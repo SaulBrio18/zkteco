@@ -5,6 +5,7 @@ $zk = new ZKLibrary('192.168.1.202', 4370, 'TCP');
 
 
 function guarda_usuario(){
+    global $zk;
     $zk->connect();
     $zk->disableDevice();
 
@@ -15,6 +16,7 @@ function guarda_usuario(){
 }
 
 function actualiza_usuario(){
+    global $zk;
     $zk->connect();
     $zk->disableDevice();
 
@@ -25,6 +27,7 @@ function actualiza_usuario(){
 }
 
 function info_usuario(){
+    global $zk;
     $zk->connect();
     $zk->disableDevice();
 
@@ -35,12 +38,13 @@ function info_usuario(){
 }
 
 function asistencias(){
+    global $zk;
     $zk->connect();
     $zk->disableDevice();
 
+    return $zk->getAttendance();
 
     $zk->enableDevice();
     $zk->disconnect();
-
 }
 ?>
