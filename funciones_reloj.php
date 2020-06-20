@@ -4,10 +4,16 @@ $zk = new ZKLibrary('192.168.1.202', 4370, 'TCP');
 
 
 
-function guarda_usuario(){
+function guarda_usuario($userid, $name, $password, $role){
     global $zk;
     $zk->connect();
     $zk->disableDevice();
+
+    $usuarios=$zk->getUser();
+
+    $uid= count($usuarios)+1;
+
+    $zk->setUser($uid, $userid, $name, $password, $role);
 
 
     $zk->enableDevice();
