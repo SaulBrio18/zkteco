@@ -37,16 +37,8 @@ $inicio = strlen($cabecera);
 $final = strpos($texto,"}"); 
 $largo = $final - $inicio;
 $cuerpo = substr($texto,$inicio,$largo);
-//$punt = fopen($ticket, "w");
-//fputs($punt,$cabecera);
 $despues = $cuerpo;
 
-/*
-foreach($incidencias as $dato)
-{
-    $texto = str_replace($dato[0],$dato[1],$texto);
-}
-*/
 
 //Prmer recorrido para los datos generales
 foreach(array_keys($data) as $dato)
@@ -67,15 +59,7 @@ $str_tabla = substr($texto, $indice_ini+6,$leng_str-6); //Cadena que se buscara 
 $tabla_replace = substr($texto, $indice_ini,$leng_str+2);
 
 
-/*
-$str_tabla = str_replace("][","|",$str_tabla);
-$str_tabla = str_replace("[","",$str_tabla);
-$str_tabla = str_replace("]","",$str_tabla);
-$str_tabla = explode("|",$str_tabla);
-*/
 
-$tabla_marker = "\\trowd\\trgaph70\\trleft-108\\trpaddl70\\trpaddr70\\trpaddfl3\\trpaddfr3";
-$tabla_marker2 ="\pard\\nowidctlpar\sa200\sl240\slmult1 \par";
 
 $tabla_prd="";
 $index = count($data['productos']);
@@ -92,21 +76,13 @@ for($x=0; $x<$index; $x++)
         //$tabla_prd .= $productos."->".$data['productos'][$x][$productos]."|"; 
         
     }
-    $tabla_prd.="$aux \par ";
+    $tabla_prd.="$aux";
 }
-
-/*
-$tabla_prd = str_replace($tabla_marker," ",$tabla_prd);
-$tabla_prd = str_replace($tabla_marker2, $tabla_marker,$tabla_prd);
-$tabla_prd = $tabla_marker.$tabla_prd.$tabla_marker2;
-*/
-
-//echo $tabla_prd;
 
 $texto = str_replace($tabla_replace,$tabla_prd,$texto);
 $texto = str_replace("\par\par","",$texto);
 
-file_put_contents("c:/gama/$ticket.rtf",$texto);
+file_put_contents("../../$ticket.rtf",$texto);
 //exec("wordpad.exe /p \"c:/gama/$ticket.rtf\"");
 //echo $str_tabla;
 ?>
